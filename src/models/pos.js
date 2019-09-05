@@ -25,7 +25,7 @@ module.exports = {
     },
     getAllCart: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT menu.name,menu.price, menu.image,menu.price, cart.qty from menu INNER JOIN cart ON menu.idMenu = cart.idMenu', (err, result) => {
+            connection.query('SELECT menu.idMenu,menu.name,menu.price, menu.image,menu.price, cart.qty from menu INNER JOIN cart ON menu.idMenu = cart.idMenu', (err, result) => {
                 if (!err) {                    
                     resolve(result)
                 } else {
@@ -69,8 +69,9 @@ module.exports = {
     },
     qty: (id,data) => {
         console.log('model ',data)
+        console.log('model id ',id)
         return new Promise((resolve, reject) => {
-            connection.query('UPDATE cart set ? where idMenu = ? ',[data,id], (err, result) => {
+            connection.query('UPDATE cart set ? where idMenu = ? ',[data,Number(id)], (err, result) => {
                     console.log('masuk')
                     if (!err) {                    
                     resolve(result)

@@ -86,6 +86,7 @@ module.exports = {
             })
     },
     plus: (req, res) => {
+        console.log(req.body.qty)
         const data = {
             qty: Number(req.body.qty) + 1,
         }
