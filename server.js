@@ -6,12 +6,12 @@ const port = process.env.PORT || 3333
 const bodyPraser = require('body-parser')
 const logger = require('morgan')
 const pos = require('./src/routes/pos');
+app.use(Cors())
 app.use(
 	bodyPraser.urlencoded({
 		extended: true
 	})
 );
-app.use(Cors())
 app.use(bodyPraser.json());
 
 app.listen(port);

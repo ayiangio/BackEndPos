@@ -15,6 +15,11 @@ router
     .post('/transaksi', postController.postTransaksi)
     .post('/login', postController.login)
     .post('/register', postController.register)
+    // .post('/qtyplus', postController.plus)
+    // .post('/qtyminus', postController.minus)
+    .post('/cart', postController.cart)
+    .get('/cart', postController.getCart)
+    .delete('/deleteCart/:idMenu', postController.deletecart)
     .post('/send', postController.send)
     .get('/transaksi', postController.getAllTransaksi)
     

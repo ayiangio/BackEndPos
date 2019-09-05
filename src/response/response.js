@@ -7,7 +7,7 @@ module.exports = {
 
     resultPrint.error = error || null
     resultPrint.status_code = status || 200
-    // resultPrint.jumlah = jumlah 
+    resultPrint.total = jumlah 
     resultPrint.result = result
     return res.status(resultPrint.status_code).json(resultPrint)
   },

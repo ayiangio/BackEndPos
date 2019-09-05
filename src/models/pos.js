@@ -23,6 +23,17 @@ module.exports = {
             })
         })
     },
+    getAllCart: () => {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT menu.name,menu.price, menu.image,menu.price, cart.qty from menu INNER JOIN cart ON menu.idMenu = cart.idMenu', (err, result) => {
+                if (!err) {                    
+                    resolve(result)
+                } else {
+                    reject(new Error(err))
+                }
+            })
+        })
+    },
     postMenu: (data) => {
         return new Promise((resolve, reject) => {
             connection.query('INSERT into menu set ? ',data, (err, result) => {
@@ -37,6 +48,28 @@ module.exports = {
     postTransaksi: (data) => {
         return new Promise((resolve, reject) => {
             connection.query('INSERT into transaksi set ? ',data, (err, result) => {
+                if (!err) {                    
+                    resolve(result)
+                } else {
+                    reject(new Error(err))
+                }
+            })
+        })
+    },
+    postCart: (data) => {
+        return new Promise((resolve, reject) => {
+            connection.query('INSERT into cart set ? ',data, (err, result) => {
+                if (!err) {                    
+                    resolve(result)
+                } else {
+                    reject(new Error(err))
+                }
+            })
+        })
+    },
+    deleteCart: (data) => {
+        return new Promise((resolve, reject) => {
+            connection.query('delete from cart where idMenu = ? ',data, (err, result) => {
                 if (!err) {                    
                     resolve(result)
                 } else {

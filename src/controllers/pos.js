@@ -70,6 +70,46 @@ module.exports = {
                 console.log(error)
             })
     },
+    cart: (req, res) => {
+        const data = {
+            idMenu: Number(req.body.idMenu),
+            // idUser: Number(req.body.idUser),
+            qty: Number(req.body.qty),
+            date: new Date()
+        }
+        pos.postCart(data)
+            .then((result) => {
+                miscHelper.response(res, data, 200)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    },
+    getCart: (req, res) => {
+        pos.getAllCart()
+            .then((result) => {
+                let data = result
+                let total = 0
+                result.map((item,key)=>{                    
+                    total = (item.price*item.qty)+total                    
+                })
+                console.log (total)
+                miscHelper.response(res, data, 200,null,total)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    },
+    deletecart: (req, res) => {
+        const data = Number(req.params.idMenu)
+        pos.deleteCart(data)
+            .then((result) => {
+                miscHelper.response(res, data, 200)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    },
     register: (req, res) => {
         const salt = miscHelper.getRandomSalt(25)
         const passHash = miscHelper.setPass(req.body.password, salt)
