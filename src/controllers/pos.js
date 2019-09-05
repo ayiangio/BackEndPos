@@ -85,6 +85,30 @@ module.exports = {
                 console.log(error)
             })
     },
+    plus: (req, res) => {
+        const data = {
+            qty: Number(req.body.qty) + 1,
+        }
+        pos.qty(Number(req.params.idMenu),data)
+            .then((result) => {
+                miscHelper.response(res, result, 200)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    },
+    minus: (req, res) => {
+        const data = {
+            qty: Number(req.body.qty) -  1,
+        }
+        pos.qty(Number(req.params.idMenu),data)
+            .then((result) => {
+                miscHelper.response(res, result, 200)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    },
     getCart: (req, res) => {
         pos.getAllCart()
             .then((result) => {

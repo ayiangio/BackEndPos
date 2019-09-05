@@ -67,6 +67,19 @@ module.exports = {
             })
         })
     },
+    qty: (id,data) => {
+        console.log('model ',data)
+        return new Promise((resolve, reject) => {
+            connection.query('UPDATE cart set ? where idMenu = ? ',[data,id], (err, result) => {
+                    console.log('masuk')
+                    if (!err) {                    
+                    resolve(result)
+                } else {
+                    reject(new Error(err))
+                }
+            })
+        })
+    },
     deleteCart: (data) => {
         return new Promise((resolve, reject) => {
             connection.query('delete from cart where idMenu = ? ',data, (err, result) => {
