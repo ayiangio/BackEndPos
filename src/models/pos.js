@@ -14,7 +14,7 @@ module.exports = {
     },
     getAllTransaksi: () => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * from transaksi', (err, result) => {
+            connection.query('SELECT * from detailTransaksi', (err, result) => {
                 if (!err) {                    
                     resolve(result)
                 } else {
@@ -46,8 +46,9 @@ module.exports = {
         })
     },
     postTransaksi: (data) => {
+        // console.log(JSON.parse(data))
         return new Promise((resolve, reject) => {
-            connection.query('INSERT into transaksi set ? ',data, (err, result) => {
+            connection.query('INSERT into detailTransaksi set ? ',data, (err, result) => {
                 if (!err) {                    
                     resolve(result)
                 } else {

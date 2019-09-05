@@ -56,12 +56,20 @@ module.exports = {
             });
     },
     postTransaksi: (req, res) => {
+        const detail = JSON.stringify(req.body.menu)
+        console.log(detail)
         const data = {
             idTransaksi: req.body.idTransaksi,
-            jumlah: req.body.jumlah,
             total: req.body.total,
+            detail : detail,
             date: new Date()
         }
+        // const item = req.body.menu
+        // console.log('array ',item)
+        // console.log('array ',item[0])
+        // const item={
+        //     idTransaksi : req.body.idTransaksi,
+        // }
         pos.postTransaksi(data)
             .then((result) => {
                 miscHelper.response(res, data, 200)
